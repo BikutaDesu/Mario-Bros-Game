@@ -69,7 +69,7 @@ public class PlayScreen implements Screen {
 
         new B2WorldCreator(world, tiledMap, game);
 
-        player = new Mario(world, this);
+        player = new Mario(world, this, game.getAssetManager());
 
         world.setContactListener(new WorldContactListener());
 
@@ -83,14 +83,6 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.body.applyLinearImpulse(new Vector2(0, 4), player.body.getWorldCenter(), true);
-            game.getAssetManager().get("audio/sounds/jump.wav", Sound.class).play();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.body.getLinearVelocity().x <= 2)
-            player.body.applyLinearImpulse(new Vector2(0.1f, 0), player.body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.body.getLinearVelocity().x >= -2)
-            player.body.applyLinearImpulse(new Vector2(-0.1f, 0), player.body.getWorldCenter(), true);
         if (Gdx.input.isKeyJustPressed(Input.Keys.F3)) {
             game.setDebugMode(!game.getDebugMode());
         }

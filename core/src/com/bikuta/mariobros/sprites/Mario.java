@@ -1,5 +1,9 @@
 package com.bikuta.mariobros.sprites;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -25,11 +29,13 @@ public class Mario extends Sprite {
     private float stateTimer;
     private boolean isRunningRight;
 
-    public Mario(World world, PlayScreen playScreen) {
+    private AssetManager assetManager;
+
+    public Mario(World world, PlayScreen playScreen, AssetManager assetManager) {
         super(playScreen.getTextureAtlas().findRegion("little_mario"));
 
         this.world = world;
-
+        this.assetManager = assetManager;
         currentState = State.STADING;
         previousState = State.STADING;
         stateTimer = 0;
@@ -58,8 +64,20 @@ public class Mario extends Sprite {
     }
 
     public void update(float dt){
+        playerHandleInput(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
+    }
+
+    public void playerHandleInput(float dt){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            body.applyLinearImpulse(new Vector2(0, 4), body.getWorldCenter(), true);
+            assetManager.get("audio/sounds/jump.wav", Sound.class).play();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && body.getLinearVelocity().x <= 2)
+            body.applyLinearImpulse(new Vector2(0.1f, 0), body.getWorldCenter(), true);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && body.getLinearVelocity().x >= -2)
+            body.applyLinearImpulse(new Vector2(-0.1f, 0), body.getWorldCenter(), true);
     }
 
     public TextureRegion getFrame(float dt){
