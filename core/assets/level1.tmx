@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="57">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="60">
  <tileset firstgid="1" source="tileset_gutter.tsx"/>
  <layer id="1" name="background" width="240" height="13">
   <data encoding="base64" compression="zlib">
@@ -8,7 +8,7 @@
  </layer>
  <layer id="2" name="graphics" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztl81OwzAMx9NyAnFhHNCuHEECaXztRfl4EuDxlopVyiw7cZ3ETal/kqWlauy/YzvqnDMMw/jjvXfuw9tnr7t3Tt8txJNSW+daz2EOfyVifvu9P95+BT44e6Uapbq042lTW+cc5yCpWY5OLF7pvDn+Yu+0co9q98NS5nCklTrlkpPHUnpEs1ZL6+NW6QsaRq06ad8La+i3NeRolGGbWKewXjMMwzCMZXCLmGHMwXnn3EUn2zt8cm4d/Z+1Jqnv5qnf0Vyw2bX5pbk8WuoZxUbQmzk93Towtzv/+/6f5iqpfQxqdlufX+k5lJiDs4hBoM4rv37ydk1ooPTBnr5h5BDLVfs+CPWm5pWaX07OU9lMPNMcYrXnxIbvxGZXc35HXdyeSs0A5ntEereHfsJ5fXD0/EKdw3p3fPZM6B/1vXh79fbW4br3jBwoX5i/2uwjsWPrUDsn5xAs7xBYn9L+YaxY7bHY0H/4Tmp2Ned31EXVLYQ6B+p9eC6wV+A+jp9wXh8dPr+YzsFFDfvqTy3HR611rZxr+deKoam/9Zq2bgckeHk5
+   eJztl9tOwzAMhrPuCsTNxgXaLZcgMWnjsBfl8CTA4y0VjZRZduLm4KbUn2RtqVr7d2xHrTGKoih/vHfGfFj77GSfndJ3C/FSqa1zqfswhb8SMb/tsz/WfhN8cJ5N1ZiqSzqeNLV1TrEPKTXL0YnFK503x1/onlbOUel+mMscOlqpUy45ecylRyRrNbc+bpVVQcOoVSfpc2EJ/baEHJUy7CLrGNpriqIoijIP7hFTlCm4sh+c19RHZ4T+lXM3/EoTe28e+x7NBZtdnV+am8Fi1yi2Cb2Z09OtA3N7sP8f/2muKbUPQc1u6/Obug8l5mAdMAjUubHro7VbQgOlD/b0HSOHUK7S54GvNzav1Pxych7LduSe5hCqPSc2vCc0u5Lz63Rxeyo2A5hvR+rZ7vvx5/XJ0PMLdfbrw3DtmdDv9L1Ye7X2tsJ1nxg5UL4wf7U5BWKH1r52Ts4+WN4+sD6l/cNYodpjsaF//57Y7ErOr9NF1c2H2gfqfrgvsFfgcxw//rzuDT6/mM7eRQ376i4tx0etda2ca/mXiiGpv/Watm5nwQd5Jg==
   </data>
  </layer>
  <objectgroup id="3" name="ground">
@@ -36,6 +36,7 @@
   <object id="31" x="2720" y="192" width="32" height="16"/>
   <object id="32" x="2784" y="192" width="32" height="16"/>
   <object id="35" x="2848" y="192" width="992" height="16"/>
+  <object id="59" x="1472" y="64" width="304" height="16"/>
  </objectgroup>
  <objectgroup id="4" name="pipes">
   <object id="36" x="2944" y="160" width="32" height="32"/>
@@ -57,7 +58,6 @@
   <object id="50" x="1920" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="6" name="bricks">
-  <object id="51" x="1472" y="64" width="304" height="16"/>
   <object id="53" x="1424" y="128" width="16" height="16"/>
   <object id="54" x="1456" y="128" width="16" height="16"/>
  </objectgroup>
