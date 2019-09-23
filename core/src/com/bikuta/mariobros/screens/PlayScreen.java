@@ -20,6 +20,7 @@ import com.bikuta.mariobros.MarioBros;
 import com.bikuta.mariobros.scenes.Hud;
 import com.bikuta.mariobros.sprites.Mario;
 import com.bikuta.mariobros.tools.B2WorldCreator;
+import com.bikuta.mariobros.tools.WorldContactListener;
 
 public class PlayScreen implements Screen {
 
@@ -67,6 +68,8 @@ public class PlayScreen implements Screen {
         new B2WorldCreator(world, tiledMap);
 
         player = new Mario(world, this);
+
+        world.setContactListener(new WorldContactListener());
     }
 
     public TextureAtlas getTextureAtlas(){

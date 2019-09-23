@@ -3,6 +3,7 @@ package com.bikuta.mariobros.sprites;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.bikuta.mariobros.MarioBros;
@@ -34,6 +35,7 @@ public class Mario extends Sprite {
         stateTimer = 0;
         isRunningRight = true;
 
+        // Criando as animações
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 1; i < 4; i++) {
             frames.add(new TextureRegion(getTexture(), i * 16, 11,16,16));
@@ -114,6 +116,15 @@ public class Mario extends Sprite {
 
         fixtureDef.shape = shape;
         body.createFixture(fixtureDef);
+
+        EdgeShape headEdgeShape = new EdgeShape();
+        // Como a edgeShape é apenas uma linha, é necessário definir o ponto inicial e o final da linha
+        headEdgeShape.set(new Vector2(-2 / MarioBros.PPM, 6 / MarioBros.PPM), new Vector2(2 / MarioBros.PPM, 6 / MarioBros.PPM));
+        fixtureDef.shape = headEdgeShape;
+        // Quando um fixture é um sensor, ele não colide com os objetos, parecido com o isTrigger do Unity
+        fixtureDef.isSensor = true;
+        // Além de criar a fixture nova ela também é identificada com o nome marioHead
+        body.createFixture(fixtureDef).setUserData("marioHead");
     }
 
 }
