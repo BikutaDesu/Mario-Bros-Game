@@ -1,6 +1,8 @@
 package com.bikuta.mariobros.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,8 +18,8 @@ public class Coin extends InteractiveTileObject {
     private static TiledMapTileSet tileSet;
     private final int BLANK_COIN = 28;
 
-    public Coin(World world, TiledMap tiledMap, Rectangle bounds) {
-        super(world, tiledMap, bounds);
+    public Coin(World world, TiledMap tiledMap, Rectangle bounds, AssetManager assetManager) {
+        super(world, tiledMap, bounds, assetManager);
         tileSet = tiledMap.getTileSets().getTileSet("tileset_gutter");
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.COIN_BIT);
@@ -26,8 +28,14 @@ public class Coin extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         Gdx.app.log("Coin", "Collision");
-        setCategoryFilter(MarioBros.DEFAULT_BIT);
-        getCell().setTile(tileSet.getTile(BLANK_COIN));
-        Hud.addScore(200);
+        if (getCell().getTile().getId() == BLANK_COIN){
+            assetManager.get("audio/sounds/bump.wav", Sound.class).play();
+        }else{
+            setCategoryFilter(MarioBros.DEFAULT_BIT);
+            getCell().setTile(tileSet.getTile(BLANK_COIN));
+            Hud.addScore(200);
+            assetManager.get("audio/sounds/coin.wav", Sound.class).play();
+        }
+
     }
 }

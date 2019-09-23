@@ -10,7 +10,9 @@ import com.bikuta.mariobros.sprites.Brick;
 import com.bikuta.mariobros.sprites.Coin;
 
 public class B2WorldCreator {
-    public B2WorldCreator(World world, TiledMap tiledMap) {
+    private MarioBros game;
+    public B2WorldCreator(World world, TiledMap tiledMap, MarioBros game) {
+        this.game = game;
         BodyDef bodyDef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fixtureDef = new FixtureDef();
@@ -22,12 +24,12 @@ public class B2WorldCreator {
             if (i == 4) {
                 for (MapObject object : tiledMap.getLayers().get(i).getObjects().getByType(RectangleMapObject.class)) {
                     Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                    new Coin(world, tiledMap, rect);
+                    new Coin(world, tiledMap, rect, game.getAssetManager());
                 }
             } else if (i == 5) {
                 for (MapObject object : tiledMap.getLayers().get(i).getObjects().getByType(RectangleMapObject.class)) {
                     Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                    new Brick(world, tiledMap, rect);
+                    new Brick(world, tiledMap, rect, game.getAssetManager());
                 }
             } else {
                 for (MapObject object : tiledMap.getLayers().get(i).getObjects().getByType(RectangleMapObject.class)) {

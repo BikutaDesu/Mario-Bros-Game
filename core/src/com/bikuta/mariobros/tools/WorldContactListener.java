@@ -24,8 +24,7 @@ public class WorldContactListener implements ContactListener {
             // Checando se o userData do objeto não é null, se o objeto extende a classe abstrata InteractiveTileObject
             // e se caso o objeto seja o bloco de moeda, verifica se ele já teve alguma colisão antes
             if (object.getUserData() != null
-                    && InteractiveTileObject.class.isAssignableFrom(object.getUserData().getClass())
-                    && object.getFilterData().categoryBits != MarioBros.DEFAULT_BIT) {
+                    && InteractiveTileObject.class.isAssignableFrom(object.getUserData().getClass())) {
                 // Fazendo o cast e chamando o método abstrato onHeadHit da classe
                 ((InteractiveTileObject) object.getUserData()).onHeadHit();
             }

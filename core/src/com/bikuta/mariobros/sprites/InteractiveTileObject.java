@@ -1,5 +1,6 @@
 package com.bikuta.mariobros.sprites;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -16,10 +17,13 @@ public abstract class InteractiveTileObject {
 
     protected Fixture fixture;
 
-    public InteractiveTileObject(World world, TiledMap tiledMap, Rectangle bounds){
+    protected AssetManager assetManager;
+
+    public InteractiveTileObject(World world, TiledMap tiledMap, Rectangle bounds, AssetManager assetManager){
         this.tiledMap = tiledMap;
         this.world = world;
         this.bounds = bounds;
+        this.assetManager = assetManager;
 
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();

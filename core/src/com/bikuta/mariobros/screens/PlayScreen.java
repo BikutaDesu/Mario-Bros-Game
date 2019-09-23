@@ -3,17 +3,17 @@ package com.bikuta.mariobros.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.bikuta.mariobros.MarioBros;
@@ -42,6 +42,8 @@ public class PlayScreen implements Screen {
 
     private Mario player;
 
+    private Music levelMusic;
+
     public PlayScreen(MarioBros game) {
         textureAtlas = new TextureAtlas("mario_and_enemies.pack");
 
@@ -65,20 +67,26 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        new B2WorldCreator(world, tiledMap);
+        new B2WorldCreator(world, tiledMap, game);
 
         player = new Mario(world, this);
 
         world.setContactListener(new WorldContactListener());
+
+        levelMusic = game.getAssetManager().get("audio/music/mario_music.ogg", Music.class);
+        levelMusic.setLooping(true);
+        levelMusic.play();
     }
 
-    public TextureAtlas getTextureAtlas(){
+    public TextureAtlas getTextureAtlas() {
         return textureAtlas;
     }
 
     public void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.body.applyLinearImpulse(new Vector2(0,4), player.body.getWorldCenter(), true);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            player.body.applyLinearImpulse(new Vector2(0, 4), player.body.getWorldCenter(), true);
+            game.getAssetManager().get("audio/sounds/jump.wav", Sound.class).play();
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.body.getLinearVelocity().x <= 2)
             player.body.applyLinearImpulse(new Vector2(0.1f, 0), player.body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.body.getLinearVelocity().x >= -2)
@@ -123,7 +131,7 @@ public class PlayScreen implements Screen {
         }
 
 
-    game.getBatch().setProjectionMatrix(gameCamera.combined);
+        game.getBatch().setProjectionMatrix(gameCamera.combined);
         game.getBatch().begin();
         player.draw(game.getBatch());
         game.getBatch().end();
