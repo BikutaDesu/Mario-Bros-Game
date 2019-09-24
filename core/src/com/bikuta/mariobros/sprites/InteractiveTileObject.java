@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.bikuta.mariobros.MarioBros;
+import com.bikuta.mariobros.screens.PlayScreen;
 
 public abstract class InteractiveTileObject {
     protected World world;
@@ -19,9 +20,9 @@ public abstract class InteractiveTileObject {
 
     protected AssetManager assetManager;
 
-    public InteractiveTileObject(World world, TiledMap tiledMap, Rectangle bounds, AssetManager assetManager){
-        this.tiledMap = tiledMap;
-        this.world = world;
+    public InteractiveTileObject(PlayScreen screen, Rectangle bounds, AssetManager assetManager){
+        this.tiledMap = screen.getTiledMap();
+        this.world = screen.getWorld();
         this.bounds = bounds;
         this.assetManager = assetManager;
 

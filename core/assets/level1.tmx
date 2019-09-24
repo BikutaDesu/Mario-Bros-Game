@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="60">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="75">
  <tileset firstgid="1" source="tileset_gutter.tsx"/>
  <layer id="1" name="background" width="240" height="13">
   <data encoding="base64" compression="zlib">
@@ -8,7 +8,7 @@
  </layer>
  <layer id="2" name="graphics" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztl9tOwzAMhrPuCsTNxgXaLZcgMWnjsBfl8CTA4y0VjZRZduLm4KbUn2RtqVr7d2xHrTGKoih/vHfGfFj77GSfndJ3C/FSqa1zqfswhb8SMb/tsz/WfhN8cJ5N1ZiqSzqeNLV1TrEPKTXL0YnFK503x1/onlbOUel+mMscOlqpUy45ecylRyRrNbc+bpVVQcOoVSfpc2EJ/baEHJUy7CLrGNpriqIoijIP7hFTlCm4sh+c19RHZ4T+lXM3/EoTe28e+x7NBZtdnV+am8Fi1yi2Cb2Z09OtA3N7sP8f/2muKbUPQc1u6/Obug8l5mAdMAjUubHro7VbQgOlD/b0HSOHUK7S54GvNzav1Pxych7LduSe5hCqPSc2vCc0u5Lz63Rxeyo2A5hvR+rZ7vvx5/XJ0PMLdfbrw3DtmdDv9L1Ye7X2tsJ1nxg5UL4wf7U5BWKH1r52Ts4+WN4+sD6l/cNYodpjsaF//57Y7ErOr9NF1c2H2gfqfrgvsFfgcxw//rzuDT6/mM7eRQ376i4tx0etda2ca/mXiiGpv/Watm5nwQd5Jg==
+   eJztl9tOwzAMhrNyBeJm4wLtlkuQQBqnvSiHJwEej1Q0UrDsxDm56epPsrRUqf07trvWGEVRlD/eBmPerX0MsvfO6buHeLm01rnWc5jDX42YX/beb2s/GT449+ZqzNUlHU+a1jrnOIecmpXoxOLVzpvjL7Snl+eodD8sZQ4dvdSplJI8ltIjkrVaWh/3yqaiYbSqU+1eGyajWEO/rSFHpQ77yDqG9pqiKIqiLIMbxBRlDs7tB+cF9dEZYXzl3Jvw916KrxQ/sffm1PdoLtjscuYX5hdbnwqXk8WuUewyerOkp3sH5nZrf9+daK45tQ9BzW7v/7+551BjDs4CBoE6t3b9aO2K0EDpgz19zcghlKv088DXG5tXan45OaeySzzTEkK158SGe0KzKzm/The3p2IzgPl25D7bfT/+vN4ben6hznF9mK49EfqdvmdrL9ZeN7juIyMHyhfmrzXHQOzQ2tfOydkHy9sH1qe2fxgrVHssNvTv74nNruT8Ol1U3Xyoc6D2w3OBvQLv4/jx5/XB4POL6RxdtLDP4b+V+Gi1bpVzK/9SMST1917T3u0XQ915Og==
   </data>
  </layer>
  <objectgroup id="3" name="ground">
@@ -60,5 +60,15 @@
  <objectgroup id="6" name="bricks">
   <object id="53" x="1424" y="128" width="16" height="16"/>
   <object id="54" x="1456" y="128" width="16" height="16"/>
+  <object id="65" x="1728" y="128" width="16" height="16"/>
+  <object id="66" x="1744" y="128" width="16" height="16"/>
+  <object id="67" x="2528" y="64" width="16" height="16"/>
+  <object id="68" x="2544" y="64" width="16" height="16"/>
+  <object id="69" x="2624" y="128" width="16" height="16"/>
+  <object id="70" x="2640" y="128" width="16" height="16"/>
+  <object id="71" x="2688" y="128" width="16" height="16"/>
+  <object id="72" x="2704" y="128" width="16" height="16"/>
+  <object id="73" x="2752" y="128" width="16" height="16"/>
+  <object id="74" x="2768" y="128" width="16" height="16"/>
  </objectgroup>
 </map>

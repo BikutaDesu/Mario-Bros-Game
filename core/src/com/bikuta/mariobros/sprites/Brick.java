@@ -8,10 +8,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bikuta.mariobros.MarioBros;
 import com.bikuta.mariobros.scenes.Hud;
+import com.bikuta.mariobros.screens.PlayScreen;
 
 public class Brick extends InteractiveTileObject {
-    public Brick(World world, TiledMap tiledMap, Rectangle bounds, AssetManager assetManager) {
-        super(world, tiledMap, bounds, assetManager);
+    public Brick(PlayScreen screen, Rectangle bounds, AssetManager assetManager) {
+        super(screen, bounds, assetManager);
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.BRICK_BIT);
     }

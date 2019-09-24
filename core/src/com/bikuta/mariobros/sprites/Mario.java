@@ -31,10 +31,10 @@ public class Mario extends Sprite {
 
     private AssetManager assetManager;
 
-    public Mario(World world, PlayScreen playScreen, AssetManager assetManager) {
+    public Mario(PlayScreen playScreen, AssetManager assetManager) {
         super(playScreen.getTextureAtlas().findRegion("little_mario"));
 
-        this.world = world;
+        this.world = playScreen.getWorld();
         this.assetManager = assetManager;
         currentState = State.STADING;
         previousState = State.STADING;

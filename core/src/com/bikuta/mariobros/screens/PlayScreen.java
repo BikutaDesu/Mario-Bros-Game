@@ -67,9 +67,9 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        new B2WorldCreator(world, tiledMap, game);
+        new B2WorldCreator(this);
 
-        player = new Mario(world, this, game.getAssetManager());
+        player = new Mario(this, game.getAssetManager());
 
         world.setContactListener(new WorldContactListener());
 
@@ -131,6 +131,18 @@ public class PlayScreen implements Screen {
         // Desenhando oq esta no stage da Hud
         game.getBatch().setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+    }
+
+    public TiledMap getTiledMap(){
+        return this.tiledMap;
+    }
+
+    public World getWorld(){
+        return this.world;
+    }
+
+    public MarioBros getGame(){
+        return this.game;
     }
 
     @Override
