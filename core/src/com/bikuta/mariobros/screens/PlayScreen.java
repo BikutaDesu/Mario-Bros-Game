@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.bikuta.mariobros.MarioBros;
 import com.bikuta.mariobros.scenes.Hud;
+import com.bikuta.mariobros.sprites.Goomba;
 import com.bikuta.mariobros.sprites.Mario;
 import com.bikuta.mariobros.tools.B2WorldCreator;
 import com.bikuta.mariobros.tools.WorldContactListener;
@@ -41,6 +42,7 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer box2DDebugRenderer;
 
     private Mario player;
+    private Goomba goomba;
 
     private Music levelMusic;
 
@@ -71,6 +73,8 @@ public class PlayScreen implements Screen {
 
         player = new Mario(this, game.getAssetManager());
 
+        goomba = new Goomba(this, 32f, 32f);
+
         world.setContactListener(new WorldContactListener());
 
         levelMusic = game.getAssetManager().get("audio/music/mario_music.ogg", Music.class);
@@ -96,6 +100,8 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
+        goomba.update(dt);
+
         hud.update(dt);
 
         gameCamera.position.x = player.body.getPosition().x;
@@ -126,6 +132,7 @@ public class PlayScreen implements Screen {
         game.getBatch().setProjectionMatrix(gameCamera.combined);
         game.getBatch().begin();
         player.draw(game.getBatch());
+        goomba.draw(game.getBatch());
         game.getBatch().end();
 
         // Desenhando oq esta no stage da Hud

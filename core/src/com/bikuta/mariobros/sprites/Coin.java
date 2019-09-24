@@ -3,13 +3,8 @@ package com.bikuta.mariobros.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
 import com.bikuta.mariobros.MarioBros;
 import com.bikuta.mariobros.scenes.Hud;
 import com.bikuta.mariobros.screens.PlayScreen;
@@ -32,7 +27,7 @@ public class Coin extends InteractiveTileObject {
         if (getCell().getTile().getId() == BLANK_COIN){
             assetManager.get("audio/sounds/bump.wav", Sound.class).play();
         }else{
-            setCategoryFilter(MarioBros.DEFAULT_BIT);
+            setCategoryFilter(MarioBros.GROUND_BIT);
             getCell().setTile(tileSet.getTile(BLANK_COIN));
             Hud.addScore(200);
             assetManager.get("audio/sounds/coin.wav", Sound.class).play();
