@@ -73,7 +73,7 @@ public class PlayScreen implements Screen {
 
         player = new Mario(this, game.getAssetManager());
 
-        goomba = new Goomba(this, 32f, 32f);
+        goomba = new Goomba(this, 64f, 32f);
 
         world.setContactListener(new WorldContactListener());
 

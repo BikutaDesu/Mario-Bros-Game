@@ -15,9 +15,11 @@ import com.bikuta.mariobros.screens.PlayScreen;
 
 public class Mario extends Sprite {
 
-    public enum State{
+    public enum State {
         STADING, FALLING, JUMPING, RUNNING
-    };
+    }
+
+    ;
     public State currentState;
     public State previousState;
 
@@ -44,32 +46,32 @@ public class Mario extends Sprite {
         // Criando as animações
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 1; i < 4; i++) {
-            frames.add(new TextureRegion(getTexture(), i * 16, 11,16,16));
+            frames.add(new TextureRegion(getTexture(), i * 16, 11, 16, 16));
         }
         marioRun = new Animation(0.1f, frames);
         frames.clear();
 
         for (int i = 4; i < 6; i++) {
-            frames.add(new TextureRegion(getTexture(), i * 16, 11,16,16));
+            frames.add(new TextureRegion(getTexture(), i * 16, 11, 16, 16));
         }
         marioJump = new Animation(0.1f, frames);
         frames.clear();
 
-        marioStand = new TextureRegion(getTexture(), 0,11,16,16);
+        marioStand = new TextureRegion(getTexture(), 0, 11, 16, 16);
 
         defineMario();
 
-        setBounds(0,0,16 / MarioBros.PPM,16 / MarioBros.PPM);
+        setBounds(0, 0, 16 / MarioBros.PPM, 16 / MarioBros.PPM);
         setRegion(marioStand);
     }
 
-    public void update(float dt){
+    public void update(float dt) {
         playerHandleInput(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
     }
 
-    public void playerHandleInput(float dt){
+    public void playerHandleInput(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             body.applyLinearImpulse(new Vector2(0, 4), body.getWorldCenter(), true);
             assetManager.get("audio/sounds/jump.wav", Sound.class).play();
@@ -80,12 +82,12 @@ public class Mario extends Sprite {
             body.applyLinearImpulse(new Vector2(-0.1f, 0), body.getWorldCenter(), true);
     }
 
-    public TextureRegion getFrame(float dt){
+    public TextureRegion getFrame(float dt) {
         currentState = getState();
 
         TextureRegion textureRegion;
 
-        switch (currentState){
+        switch (currentState) {
             case JUMPING:
                 textureRegion = (TextureRegion) marioJump.getKeyFrame(stateTimer);
                 break;
@@ -98,10 +100,10 @@ public class Mario extends Sprite {
                 textureRegion = marioStand;
                 break;
         }
-        if ((body.getLinearVelocity().x < 0 || !isRunningRight) && !textureRegion.isFlipX()){
+        if ((body.getLinearVelocity().x < 0 || !isRunningRight) && !textureRegion.isFlipX()) {
             textureRegion.flip(true, false);
             isRunningRight = false;
-        }else if ((body.getLinearVelocity().x > 0 || isRunningRight) && textureRegion.isFlipX()){
+        } else if ((body.getLinearVelocity().x > 0 || isRunningRight) && textureRegion.isFlipX()) {
             textureRegion.flip(true, false);
             isRunningRight = true;
         }
@@ -111,7 +113,7 @@ public class Mario extends Sprite {
         return textureRegion;
     }
 
-    public State getState(){
+    public State getState() {
         if (body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && previousState == State.JUMPING))
             return State.JUMPING;
         else if (body.getLinearVelocity().y < 0)
@@ -133,7 +135,12 @@ public class Mario extends Sprite {
         shape.setRadius(7 / MarioBros.PPM);
 
         fixtureDef.filter.categoryBits = MarioBros.MARIO_BIT;
-        fixtureDef.filter.maskBits = MarioBros.GROUND_BIT | MarioBros.COIN_BIT | MarioBros.BRICK_BIT | MarioBros.ENEMY_BIT | MarioBros.OBJECT_BIT;
+        fixtureDef.filter.maskBits = MarioBros.GROUND_BIT |
+                MarioBros.COIN_BIT |
+                MarioBros.BRICK_BIT |
+                MarioBros.ENEMY_BIT |
+                MarioBros.OBJECT_BIT |
+                MarioBros.ENEMY_HEAD_BIT;
 
         fixtureDef.shape = shape;
         body.createFixture(fixtureDef);

@@ -1,8 +1,8 @@
 package com.bikuta.mariobros.tools;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
 import com.bikuta.mariobros.MarioBros;
+import com.bikuta.mariobros.sprites.Enemy;
 import com.bikuta.mariobros.sprites.InteractiveTileObject;
 
 // Um Contact Listener é chamado sempre que dois fixtures colidem
@@ -14,6 +14,8 @@ public class WorldContactListener implements ContactListener {
         // O atributo contact possui dois fixtures que estão se colidindo
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
+
+        int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
         // Vendo se o edgeShape do mario está em um dos fixtures da colisão
         if (fixA.getUserData() == "marioHead" || fixB.getUserData() == "marioHead") {
@@ -28,6 +30,15 @@ public class WorldContactListener implements ContactListener {
                 // Fazendo o cast e chamando o método abstrato onHeadHit da classe
                 ((InteractiveTileObject) object.getUserData()).onHeadHit();
             }
+        }
+
+        switch (cDef){
+            case MarioBros.ENEMY_HEAD_BIT | MarioBros.MARIO_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.ENEMY_HEAD_BIT){
+                    ((Enemy)fixA.getUserData()).hitOnHead();
+                }else if (fixB.getFilterData().categoryBits == MarioBros.ENEMY_HEAD_BIT){
+                    ((Enemy)fixB.getUserData()).hitOnHead();
+                }
         }
     }
 
